@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Dawes - UI/UX</title>
+    <style>
+        /* General Reset */
+
+            /* Apply border-box to all elements */
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden; /* Prevents default scrolling */
+        }
+
+        /* Scrollable Container */
+        #scroll-container {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+            width: 100vw;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Full Page Sections */
+        .page {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: white;
+            scroll-snap-align: start;
+        }
+
+        /* Page 1: Animation */
+        #animation-container {
+            background: linear-gradient(to right, #4aa6da, #0074b4); /* Gradient for Page 1 */
+        }
+
+        /* Page 2: Main Content */
+        #main-content { 
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* Three equal columns for top */
+            grid-template-rows: 1fr 1fr; /* Two rows */
+            gap: 20px;
+            padding: 20px;
+            height: 100vh;
+            width: 100vw;
+            box-sizing: border-box;
+            background: url('/WebsiteComponents/Backgrounds/About_Nav Background.png') no-repeat center center;
+            background-size: 100% 100%;
+            background-attachment: scroll;
+        }
+
+        /* Top Three Areas */
+        .top-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(51, 51, 51, 0.6); /* Semi-transparent to let gradient show */
+            padding: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .top-section:hover {
+            background: rgba(68, 68, 68, 0.7);
+        }
+
+        #middle-image {
+            cursor: default;
+            background: rgba(85, 85, 85, 0.6);
+            border-radius: 10px;
+        }
+
+        /* Bottom Two Areas (Equal 50/50 Split) */
+        .bottom-container {
+            display: flex;
+            gap: 20px;
+            grid-column: span 3; /* Makes sure the bottom section spans the width */
+        }
+
+        .bottom-section {
+            flex: 1; /* Makes both sections take up equal width */
+            background: rgba(68, 68, 68, 0.6);
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Styling for Clickable Areas */
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+</head>
+
+<body>
+    <!-- Scrollable Wrapper -->
+    <div id="scroll-container">
+        <!-- Page 1: Animation -->
+        <div class="page" id="animation-container"></div>
+
+        <!-- Page 2: Main Content -->
+        <div class="page" id="main-content">
+            <!-- Top Three Sections -->
+            <a href="#section1" class="top-section" id="left-box">Go to Section 1</a>
+            <div class="top-section" id="middle-image">
+                <img src="your-image.jpg" alt="Image" width="100%">
+            </div>
+            <a href="#section2" class="top-section" id="right-box">Go to Section 2</a>
+
+            <!-- Bottom Two Sections (Now Side by Side, Equal Width) -->
+            <div class="bottom-container">
+                <div class="bottom-section" id="bottom-left">This is some text on the left.</div>
+                <div class="bottom-section" id="bottom-right">This is some text on the right.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var animationContainer = document.getElementById('animation-container');
+
+            var animation = lottie.loadAnimation({
+                container: animationContainer,
+                renderer: 'canvas', 
+                loop: false,
+                autoplay: true,
+                path: '/WebsiteComponents/JSON/LandingPage.json',
+                rendererSettings: {
+                    preserveAspectRatio: 'xMidYMid meet',
+                    clearCanvas: true,
+                    dpr: window.devicePixelRatio || 1
+                }
+            });
+
+            animation.addEventListener("complete", function () {
+                console.log("Animation finished.");
+            });
+        });
+    </script>
+</body>
+</html>
