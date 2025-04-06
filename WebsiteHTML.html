@@ -220,8 +220,56 @@
         @keyframes swing {
             0% { transform: rotate(0deg); }
             25% { transform: rotate(5deg); }
-            75% { transform: rotate(-5deg); }
+            75% { transform: rotate(-2deg); }
             100% { transform: rotate(0deg); }
+        }
+
+        /* Fourth page styling */
+        #projects-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Base background image that maintains aspect ratio */
+        #projects-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/WebsiteComponents/Backgrounds/ProjectsBackground.png') no-repeat center center;
+            background-size: contain;
+            z-index: 1;
+        }
+
+        /* Border overlay that stretches to fill */
+        #projects-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/WebsiteComponents/Backgrounds/ProjectsBorder.png') no-repeat center center;
+            background-size: 100% 100%;
+            z-index: 2;
+        }
+
+        /* Ensure content stays above both backgrounds */
+        .projects-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
     </style>
@@ -256,12 +304,19 @@
                 <a href="https://github.com/MWKDawes" class="link-icon side" target="_blank">
                     <img src="WebsiteComponents/Page 2 Icons/GitHubLogo.png" alt="GitHub">
                 </a>
-                <a href="www.linkedin.com/in/mikewkdawes" class="link-icon middle" target="_blank">
+                <a href="https://www.linkedin.com/in/mikewkdawes" class="link-icon middle" target="_blank">
                     <img src="WebsiteComponents/Page 2 Icons/LinkedIn.png" alt="LinkedIn">
                 </a>
                 <a href="https://dribbble.com/MWKDawes" class="link-icon side" target="_blank">
                     <img src="WebsiteComponents/Page 2 Icons/DribbbleLogo.png" alt="Dribbble">
                 </a>
+            </div>
+        </div>
+
+        <!-- Page 4: Projects -->
+        <div class="page" id="projects-container">
+            <div class="projects-content">
+                <!-- Your projects content will go here -->
             </div>
         </div>
     </div>
